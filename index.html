@@ -212,6 +212,14 @@
       </div>
     </div>
   </div>
+  <div class="chat-box">
+    <div id="chat-messages"></div>
+    <div>
+      <h6>Welcome to Soft Magic Chat Bot Version-1</h6>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button onclick="sendMessage()" id="send-btn">Send</button>
+    </div>
+  </div>    
   <div class="copyright">
     <p>Copyright © Charan. Made with <i class="fa-solid fa-heart"></i> by Soft Magic 2023</p>
   </div>
@@ -267,5 +275,78 @@
           .catch(error => console.error('Error!', error.message))
       })
     </script>
+
+       <script>
+      function sendMessage() {
+          var messageInput = document.getElementById('message-input');
+          var message = messageInput.value;
+
+          if (message.trim() !== '') {
+              var chatMessages = document.getElementById('chat-messages');
+              var newMessage = document.createElement('div');
+              newMessage.textContent = 'You: ' + message;
+              chatMessages.appendChild(newMessage);
+
+              // Process the user's message and generate a simple response
+              var botResponse = getBotResponse(message);
+              displayChatbotResponse(botResponse);
+
+              // Clear the input field
+              messageInput.value = '';
+          }
+      }
+
+      function getBotResponse(userMessage) {
+        // Simple rule-based responses
+        if (userMessage.toLowerCase().includes('hello')) {
+            return 'Hi there! How can I help you?';
+        } else if (userMessage.toLowerCase().includes('how are you')) {
+            return 'I\'m just a computer program, but thanks for asking!';
+        } else if (userMessage.toLowerCase().includes('hi')) {
+            return 'Hello!';
+        } else if (userMessage.toLowerCase().includes('youtube')) {
+            return 'https://www.youtube.com/';
+        } else if (userMessage.toLowerCase().includes('whatsapp')) {
+            return 'https://www.whatsapp.com/';
+        } else if (userMessage.toLowerCase().includes('time')) {
+            var currentTime = new Date();
+            var currentDate = new Date();
+            return 'The current time is: ' + currentTime.toLocaleTimeString() + '\n' + 'The current date is: ' + currentDate.toDateString();
+        } else if (userMessage.toLowerCase().includes('thanks') || userMessage.toLowerCase().includes('thank you')) {
+            return 'You\'re welcome!';
+        } else if (userMessage.toLowerCase().includes('clear')) {
+          clearChat();
+          return 'Chat cleared.'; 
+      }
+      else {
+            return 'I didn\'t understand that. Please ask me something else.';
+        }
+
+        function clearChat() {
+          var chatMessages = document.getElementById('chat-messages');
+          chatMessages.innerHTML = '';  // Clear all child elements
+      }
+    }
+    
+
+    function displayChatbotResponse(response) {
+      var chatMessages = document.getElementById('chat-messages');
+      var newMessage = document.createElement('div');
+  
+      if (response.includes('http')) {
+          var link = document.createElement('a');
+          link.href = response;
+          link.target = '_blank';
+          link.textContent = response;
+          newMessage.appendChild(link);
+      } else {
+          newMessage.textContent = 'SoftMagic: ' + response;
+      }
+  
+      chatMessages.appendChild(newMessage);
+  }
+  
+  </script>
+    
   </body>
 </html>
