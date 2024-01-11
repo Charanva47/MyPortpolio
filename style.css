@@ -396,9 +396,40 @@ nav .fa-solid {
     font-size: 14px;
   }
 }
-
 #msg {
-  color: #61b752;
+  color: #0a0b0a;
   margin-top: -40px;
   display: block;
 }
+
+.chat-box {
+  max-width: 400px;
+  margin: 20px auto;
+  border: 1px solid #a05e5e;
+  padding: 10px;
+  background-color: #021012;
+  box-shadow: 0 0 10px rgba(178, 78, 78, 0.1);
+}
+
+#chat-messages {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+#message-input {
+  width: 70%;
+  padding: 8px;
+  margin-right: 5px;
+}
+
+#send-btn {
+  padding: 8px;
+  width: 20%;
+  font-size: large;
+  background-color: #ff004f;
+  color: #fbf5f5;
+  border: none;
+  cursor: pointer;
+}
+
